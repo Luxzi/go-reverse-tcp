@@ -6,5 +6,5 @@ import (
 
 func main() {
 	fmt.Println("Hello flake")
-	dispatchServiceProxy("0.0.0.0", 3000)
+	proxy.dispatchServiceProxy("0.0.0.0", 3000)
 }
