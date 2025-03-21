@@ -1,5 +1,5 @@
-module github.com/Luxzi/go-reverse-tcp
+module go-reverse-tcp
 
 go 1.23.6
 
-require go-reverse-tcp/proxy v1
+require golang.org/x/exp v0.0.0-20250305212735-054e65f0b394

@@ -1,4 +1,4 @@
-package main
+package proxy
 
 import (
 	"fmt"
@@ -7,8 +7,22 @@ import (
 	"net"
 )
 
-func dispatchServiceProxy(address string, port int) {
-	proxy, err := net.Listen("tcp4", fmt.Sprintf("%s:%d", address, port))
+func CreateService(name string, internalAddress string, externalAddress string, internalPort int, externalPort int) {
+	service := Service{
+		Name: name,
+		Mapping: TcpMapping{
+			InternalPort:    internalPort,
+			ExternalPort:    externalPort,
+			InternalAddress: internalAddress,
+			ExternalAddress: externalAddress,
+		},
+	}
+
+	dispatch(service)
+}
+
+func dispatch(service Service) {
+	proxy, err := net.Listen("tcp4", fmt.Sprintf("%s:%d", service.Mapping.ExternalAddress, service.Mapping.ExternalPort))
 	if err != nil {
 		log.Fatal(err)
 	}

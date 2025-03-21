@@ -1,6 +1,7 @@
-package main
+package proxy
 
 type Service struct {
+	Name    string
 	Mapping TcpMapping
 }
 
